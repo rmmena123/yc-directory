@@ -24,7 +24,7 @@
     "@sentry/nextjs": "^8.34.0",
     "@tailwindcss/typography": "^0.5.15",
     "@uiw/react-md-editor": "^4.0.4",
-    "class-variance-authority": "^0.7.0",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.452.0",
     "markdown-it": "^14.1.0",
@@ -38,7 +38,7 @@
     "server-only": "^0.0.1",
     "slugify": "^1.6.6",
     "styled-components": "^6.1.13",
-    "tailwind-merge": "^2.5.3",
+    "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
