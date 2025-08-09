@@ -24,7 +24,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const [post, { select: editorPosts }] = await Promise.all([
     client.fetch(STARTUP_BY_ID_QUERY, { id }),
     client.fetch(PLAYLIST_BY_SLUG_QUERY, {
-      slug: "editor-picks-new",
+      slug: "editor-picks-startups",
     }),
   ]);
 
@@ -46,8 +46,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           src={post.image}
           alt="thumbnail"
           className="w-full h-auto rounded-xl"
-          width={600}
-          height={400}
+          width={1920}
+          height={1080}
         />
 
         <div className="space-y-5 mt-10 max-w-4xl mx-auto">
