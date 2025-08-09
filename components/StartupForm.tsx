@@ -1,10 +1,10 @@
 "use client";
 
-import { useActionState, useState } from "react";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+import React, { useState, useActionState } from "react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import MDEditor from "@uiw/react-md-editor";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
 import { formSchema } from "@/lib/validation";
 import { z } from "zod";
@@ -19,7 +19,7 @@ const StartupForm = () => {
   const router = useRouter();
 
   const handleFormSubmit = async (
-    prevState: { error: string; status: string; id?: string },
+    prevState: { error: string; status: string },
     formData: FormData
   ) => {
     try {
@@ -35,7 +35,7 @@ const StartupForm = () => {
 
       const result = await createPitch(prevState, formData, pitch);
 
-      if (result.status === "SUCCESS") {
+      if (result.status == "SUCCESS") {
         toast({
           title: "Success",
           description: "Your startup pitch has been created successfully",
@@ -47,8 +47,9 @@ const StartupForm = () => {
       return result;
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const fieldErrors = error.flatten().fieldErrors;
-        setErrors(fieldErrors as unknown as Record<string, string>);
+        const fieldErorrs = error.flatten().fieldErrors;
+
+        setErrors(fieldErorrs as unknown as Record<string, string>);
 
         toast({
           title: "Error",
@@ -56,11 +57,7 @@ const StartupForm = () => {
           variant: "destructive",
         });
 
-        return {
-          ...prevState,
-          error: "Validation failed",
-          status: "ERROR",
-        };
+        return { ...prevState, error: "Validation failed", status: "ERROR" };
       }
 
       toast({
@@ -77,7 +74,7 @@ const StartupForm = () => {
     }
   };
 
-  const [state, formAction, isPending] = useActionState(handleFormSubmit, {
+  const [, formAction, isPending] = useActionState(handleFormSubmit, {
     error: "",
     status: "INITIAL",
   });
@@ -106,7 +103,7 @@ const StartupForm = () => {
         <Textarea
           id="description"
           name="description"
-          className="startup-form_input"
+          className="startup-form_textarea"
           required
           placeholder="Startup Description"
         />
@@ -125,7 +122,7 @@ const StartupForm = () => {
           name="category"
           className="startup-form_input"
           required
-          placeholder="Startup Category (Tech, Health, Education ...)"
+          placeholder="Startup Category (Tech, Health, Education...)"
         />
 
         {errors.category && (
