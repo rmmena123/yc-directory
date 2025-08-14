@@ -17,7 +17,10 @@ const Navbar = async () => {
         <div className="flex items-center gap-5 text-black">
           {session && session?.user ? (
             <>
-              <Link href="/startup/create">
+              <Link
+                href="/startup/create"
+                className="max-sm:flex max-sm:items-center"
+              >
                 <span className="max-sm:hidden">Create</span>
                 <BadgePlus className="size-6 sm:hidden" />
               </Link>
@@ -28,6 +31,7 @@ const Navbar = async () => {
 
                   await signOut({ redirectTo: "/" });
                 }}
+                className="max-sm:flex max-sm:items-center"
               >
                 <button type="submit">
                   <span className="max-sm:hidden">Logout</span>
